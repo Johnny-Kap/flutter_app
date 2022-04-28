@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutterapp/Screens/welcome.dart';
 import 'package:flutterapp/Services/auth_services.dart';
 import 'package:flutterapp/Services/globals.dart';
 import 'package:flutterapp/rounded_button.dart';
@@ -27,13 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen(),
+              builder: (BuildContext context) => Welcome(),
             ));
+            errorSnackBar(context, 'Connecté avec succès !');
       } else {
         errorSnackBar(context, responseMap.values.first);
       }
     } else {
-      errorSnackBar(context, 'enter all required fields');
+      errorSnackBar(context, 'Tous les champs sont requis');
     }
   }
 
@@ -41,11 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.black54,
           centerTitle: true,
           elevation: 0,
           title: const Text(
-            'Login',
+            'Connexion',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -61,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextField(
                 decoration: const InputDecoration(
-                  hintText: 'Enter your email',
+                  hintText: 'Entrer votre email',
                 ),
                 onChanged: (value) {
                   _email = value;
@@ -73,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 obscureText: true,
                 decoration: const InputDecoration(
-                  hintText: 'Enter your password',
+                  hintText: 'Entrer votre mot de passe',
                 ),
                 onChanged: (value) {
                   _password = value;
@@ -83,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 30,
               ),
               RoundedButton(
-                btnText: 'LOG IN',
+                btnText: 'Se connecter',
                 onBtnPressed: () => loginPressed(),
               )
             ],

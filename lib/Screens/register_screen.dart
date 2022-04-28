@@ -36,11 +36,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             MaterialPageRoute(
               builder: (BuildContext context) => const LoginScreen(),
             ));
+        errorSnackBar(context, 'Utilisateur ajouté avec succès !');
       } else {
         errorSnackBar(context, responseMap.values.first[0]);
       }
     } else {
-      errorSnackBar(context, 'email not valid');
+      errorSnackBar(context, 'email invalide');
     }
   }
 
@@ -48,11 +49,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black54,
         centerTitle: true,
         elevation: 0,
         title: const Text(
-          'Registration',
+          'Enregistrement',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -68,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             TextField(
               decoration: const InputDecoration(
-                hintText: 'Name',
+                hintText: 'Nom',
               ),
               onChanged: (value) {
                 _name = value;
@@ -91,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             TextField(
               obscureText: true,
               decoration: const InputDecoration(
-                hintText: 'Password',
+                hintText: 'Mot de passe',
               ),
               onChanged: (value) {
                 _password = value;
@@ -101,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 40,
             ),
             RoundedButton(
-              btnText: 'Create Account',
+              btnText: 'Valider',
               onBtnPressed: () => createAccountPressed(),
             ),
             const SizedBox(
@@ -116,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ));
               },
               child: const Text(
-                'already have an account',
+                'Vous avez déja un compte',
                 style: TextStyle(
                   decoration: TextDecoration.underline,
                 ),
